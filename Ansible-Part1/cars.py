@@ -2,13 +2,9 @@
 
 import itertools 
 
-brand = ["VW", "BMW", "MERCEDES", "AUDI"]
-model = [" TIGUAN", " X5", " GLC", " ETRON"]
+cars = ["VW TIGUAN", "BMW X5", "MERCEDES GLC", "AUDI E-TRON"]
 
-#for b in brand:
- #   for m in model:
-  #      car = b + m
-   #     print("The car model is ",car)
+print("The car models are: \n ")
 
-for (b, m) in zip(brand, model):
-    print("The car model is ",brand, model)
+for c in cars:
+     print(c)
