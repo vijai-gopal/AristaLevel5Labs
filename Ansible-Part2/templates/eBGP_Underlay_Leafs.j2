@@ -19,7 +19,25 @@ route-map LOOPBACK permit 10  {# Include the loopback ranges for the DC #}
   match ip address prefix-list LOOPBACK
 router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
   router-id {{ underlay[inventory_hostname]['interfaces']['loopback0']['ipv4']}}
+  no bgp default ipv4-unicast
+  maximum-paths 3
+  distance bgp 20 200 200
+  neighbor SPINE_Underlay peer group
+{% if underlay[inventory_hostname] == 'leaf1_DC1' or if underlay[inventory_hostname] == 'leaf2_DC1' or underlay[inventory_hostname] == 'leaf3_DC1' or underlay[inventory_hostname] == 'leaf4_DC1'  %}
+  neighbor SPINE_Underlay remote-as 65100
+{% else %}
+  neighbor SPINE_Underlay remote-as 65200
+{% endif %}
+  neighbor SPINE_Underlay send-community
+  neighbor SPINE_Underlay maximum-routes 12000
+  neighbor LEAF_Peer peer group 
+  neighbor LEAF_Peer remote-as {{ underlay[inventory_hostname]['BGP']['ASN'] }}
+  neighbor LEAF_Peer next-hop-self
+  neighbor LEAF_Peer maximum-routes 12000"
 {% for peer in underlay[inventory_hostname]['BGP']['spine-peers'] %}
   neighbor {{ peer }} peer group SPINE_Underlay
 {% endfor %}
   redistribute connected route-map LOOPBACK
+  address-family ipv4
+    neighbor SPINE_Underlay activate
+    neighbor LEAF_Peer activate
