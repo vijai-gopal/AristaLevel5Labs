@@ -1,0 +1,7 @@
+---
+  - hosts: DCI
+    gather_facts: no
+    tasks: 
+    - name: Load eBGP Underlay config
+      eos_config:
+        src: eBGP_Underlay_DCI.cfg
