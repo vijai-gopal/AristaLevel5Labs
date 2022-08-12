@@ -12,10 +12,8 @@ interface {{ item }}
 service routing protocols model multi-agent
 ip prefix-list LOOPBACK
 {% if underlay[inventory_hostname] == 'spine1_DC1' %}
-ip prefix-list LOOPBACK seq 10 permit 192.168.101.0/24 le 32
-{% if underlay[inventory_hostname] == 'spine2_DC1' %}
-ip prefix-list LOOPBACK seq 10 permit 192.168.101.0/24 le 32
-{% if underlay[inventory_hostname] == 'spine3_DC1' %}
+{% elif underlay[inventory_hostname] == 'spine2_DC1' %}
+{% elif underlay[inventory_hostname] == 'spine3_DC1' %}
 ip prefix-list LOOPBACK seq 10 permit 192.168.101.0/24 le 32
 {% else %}
 ip prefix-list LOOPBACK seq 10 permit 192.168.201.0/24 le 32
