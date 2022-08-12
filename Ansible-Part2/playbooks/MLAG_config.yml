@@ -1,12 +1,22 @@
 ---
-- hosts: leafs_DC1, leafs_DC2
+- hosts: left_DC1, left_DC2
   gather_facts: no
   tasks:
-  - name: Create MLAG config
+  - name: Create MLAG config-left
     template:
       src: "{{lookup('env','PWD')}}/templates/mlag_left.j2"
+      dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
+  - name: Upload MLAG config-left
+    eos_config:
+      src: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
+
+- hosts: right_DC1, right_DC2
+  gather_facts: no
+  tasks:
+  - name: Create MLAG config-right
+    template:
       src: "{{lookup('env','PWD')}}/templates/mlag_right.j2"
       dest: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
-  - name: Upload MLAG config
+  - name: Upload MLAG config-right
     eos_config:
       src: "{{lookup('env','PWD')}}/configs/{{inventory_hostname}}_mlag.cfg"
