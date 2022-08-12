@@ -11,7 +11,7 @@ no spanning-tree vlan-id 4094
 interface vlan 4094
    description peerlink_SVI
    no autostate
-   ip address 192.168.255.1
+   ip address 192.168.255.1/30
 
 {# This creates the port-channel configs #}
 interface ethernet1
