@@ -1,4 +1,4 @@
-{% if hosts == 'left_DC1' or hosts == 'left_DC2'%}
+{% if hosts.name == 'left_DC1' or hosts == 'left_DC2'%}
 
 {# This creates the peer-link VLAN #}
 vlan 4094
