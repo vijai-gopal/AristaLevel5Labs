@@ -33,7 +33,7 @@ router bgp {{ underlay[inventory_hostname]['BGP']['ASN'] }}
   neighbor LEAF_Peer peer group 
   neighbor LEAF_Peer remote-as {{ underlay[inventory_hostname]['BGP']['ASN'] }}
   neighbor LEAF_Peer next-hop-self
-  neighbor LEAF_Peer maximum-routes 12000"
+  neighbor LEAF_Peer maximum-routes 12000
 {% for peer in underlay[inventory_hostname]['spine-peers'] %}
   neighbor {{ peer }} peer group SPINE_Underlay
 {% endfor %}
