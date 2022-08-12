@@ -1,4 +1,4 @@
-{#% if inventory_hostname == 'left_DC1' or inventory_hostname == 'left_DC2'%}
+{# % if inventory_hostname == 'left_DC1' or inventory_hostname == 'left_DC2'% #}
 {# This creates the peer-link VLAN #}
 vlan 4094
    name peerlink_VLAN
@@ -28,4 +28,4 @@ mlag configuration
     peer-link port-channel10
     local-interface vlan 4094
     peer-address 192.168.255.2
-{#% endif %}
+{# % endif % #}
