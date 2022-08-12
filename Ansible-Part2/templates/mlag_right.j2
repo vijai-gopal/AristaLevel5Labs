@@ -1,6 +1,7 @@
 {# % if inventory_hostname == 'right_DC1' or inventory_hostname == 'right_DC2'% #}
 {# This creates the peer-link VLAN #}
 vlan 4094
+   no trunk group MLAGPEER
    name peerlink_VLAN
    trunk group MLAG_peer
 
@@ -19,6 +20,7 @@ interface ethernet1
 interface ethernet2
     channel-group 10 mode active
 interface port-channel10
+    no switchport trunk group MLAGPEER
     switchport mode trunk
     switchport trunk group MLAG_peer
 
