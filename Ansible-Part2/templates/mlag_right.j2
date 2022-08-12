@@ -1,4 +1,4 @@
-{% if hosts.name == 'right_DC1' or hosts == 'right_DC2'%}
+{% if inventory_hostname == 'right_DC1' or inventory_hostname == 'right_DC2'%}
 
 {# This creates the peer-link VLAN #}
 vlan 4094
@@ -33,4 +33,4 @@ mlag configuration
     local-interface vlan 4094
     peer-address 192.168.255.1
 !
-{% endif  %}
+{% end if  %}
