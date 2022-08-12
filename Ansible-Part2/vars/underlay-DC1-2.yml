@@ -92,11 +92,11 @@ leaf1-DC1:
       mask: 31
   BGP: 
     ASN: 65101
-    spine-peers:
+  spine-peers:
       - 192.168.103.1
       - 192.168.103.3
       - 192.168.103.5
-    iBGP-peer:
+  iBGP-peer:
       - 192.168.255.2
 leaf2-DC1:
   BGP:
